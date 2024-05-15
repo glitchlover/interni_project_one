@@ -1,0 +1,19 @@
+{
+    "dart.flutterSdkPath": "C:\\Users\\Samama\\Desktop\\Code\\Flutter\\super_calistica2\\.fvm\\versions\\3.16.9",
+    "files.exclude": {
+        ".dart_tool": true,
+        ".idea": true,
+        ".vscode": true,
+        "android": true,
+        "ios": true,
+        "linux": true,
+        "macos": true,
+        "web": true,
+        "windows": true,
+        ".gitignore": true,
+        ".metadata": true,
+        "analysis_options.yaml": true,
+        "interni_project_one.iml": true,
+        "pubspec.lock": true
+    }
+}
