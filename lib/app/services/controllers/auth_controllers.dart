@@ -98,7 +98,8 @@ class AuthController extends GetxController {
       state.value = AuthState.failedLog;
       return;
     }
-    Get.toNamed(AppPages.dashboard);
+    userModel = u1;
+    await Get.toNamed(AppPages.dashboard);
   }
 
   String get password => passwordNameTextController.text;

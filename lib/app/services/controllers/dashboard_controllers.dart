@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:interni_project_one/app/database/helper/database_helper.dart';
 import 'package:interni_project_one/app/database/model/user_model.dart';
 import 'package:interni_project_one/app/services/controllers/auth_controllers.dart';
+import 'package:sqflite/sqflite.dart';
 
 class DashboardController extends GetxController {
   final DatabaseHelper _databaseHelper = DatabaseHelper();
@@ -13,9 +14,9 @@ class DashboardController extends GetxController {
   final TextEditingController passwordNameTextController =
       TextEditingController();
 
-  late Rx<UserModel> user;
+  final Rx<UserModel> user = (AuthController.instance.userModel!).obs;
 
-  UserModel getUser() => UserModel(
+  UserModel setUser() => user.value = UserModel(
       userName: userNameTextController.text,
       firstName: firstNameTextController.text,
       lastName: lastNameTextController.text,
@@ -25,7 +26,6 @@ class DashboardController extends GetxController {
   @override
   void onInit() async {
     super.onInit();
-    user = AuthController.instance.userModel!.obs;
     await _databaseHelper.initDB();
     initializeFields();
   }
@@ -39,9 +39,10 @@ class DashboardController extends GetxController {
   }
 
   void updateUser() {
-    _databaseHelper.update(getUser());
-    user.value = getUser();
-    AuthController.instance.userModel = getUser();
+    AuthController.instance.userModel = setUser();
+    _databaseHelper.update(setUser());
+    user.value = setUser();
+    user.refresh();
     update();
   }
 }
