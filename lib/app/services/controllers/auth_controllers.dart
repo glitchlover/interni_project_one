@@ -40,13 +40,14 @@ class AuthController extends GetxController {
   }
 
   void passwordOnChange() {
-    if (passwordNameTextController.text.length >= 5) {
+    RegExp passwordRegex = RegExp(r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$');
+  if (passwordRegex.hasMatch(password)) {
       passwordError = false;
       passwordHelper.value = "";
       return;
     }
     passwordError = true;
-    passwordHelper.value = "Password should be 5 character long";
+    passwordHelper.value = "Password should be 8 character long, consists of at least one uppercase, lowercase and number";
   }
 
   void emailOnChange() {

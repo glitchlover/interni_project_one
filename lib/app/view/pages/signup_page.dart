@@ -16,41 +16,46 @@ class SignUpPage extends GetView<AuthController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Container(
-      alignment: Alignment.center,
-      padding: const EdgeInsets.all(40),
-      child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            AppTextField(
-              label: "First Name",
-              controller: controller.firstNameTextController,
+        body: SingleChildScrollView(
+          physics: const BouncingScrollPhysics(),
+          child: Container(
+              constraints: BoxConstraints(maxHeight: context.mediaQuery.size.height),
+              alignment: Alignment.center,
+              padding: const EdgeInsets.all(40),
+              child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    AppTextField(
+                      label: "First Name",
+                      controller: controller.firstNameTextController,
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    AppTextField(
+                        label: "Last Name",
+                        controller: controller.lastNameTextController),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    EmailField(controller: controller),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    PasswordField(controller: controller),
+                    const SizedBox(
+                      height: 80,
+                    ),
+                    SubmitButton(controller: controller),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    const GotoPage(text: "Already have an account? Click here to login!",route: AppPages.login),
+                    AuthSuggestor(controller: controller),
+                  ]),
             ),
-            const SizedBox(
-              height: 10,
-            ),
-            AppTextField(
-                label: "Last Name",
-                controller: controller.lastNameTextController),
-            const SizedBox(
-              height: 10,
-            ),
-            EmailField(controller: controller),
-            const SizedBox(
-              height: 10,
-            ),
-            PasswordField(controller: controller),
-            const SizedBox(
-              height: 80,
-            ),
-            SubmitButton(controller: controller),
-            const SizedBox(
-              height: 20,
-            ),
-            const GotoPage(text: "Already have an account? Click here to login!",route: AppPages.login),
-            AuthSuggestor(controller: controller),
-          ]),
-    ));
+        )
+        );
   }
 }

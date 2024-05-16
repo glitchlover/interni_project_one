@@ -10,6 +10,7 @@ class DatabaseHelper {
   // ...
   Future<Database> initDB() async {
     String path = await getDatabasesPath();
+    print("⭐$path");
     if (path.isEmpty) path.createPath();
     db = await openDatabase(
       p.join(path, _tableName),
@@ -73,6 +74,7 @@ class DatabaseHelper {
 
     return null; // Return null if no user is found with the given id
   }
+
   Future<UserModel?> loginUser(String usernameOrEmail, String password) async {
     final List<Map<String, dynamic>> maps = await db!.query(
       _tableName,
