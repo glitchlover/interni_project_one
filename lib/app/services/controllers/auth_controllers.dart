@@ -121,5 +121,6 @@ class AuthController extends GetxController {
     lastNameTextController.text = "";
     emailNameTextController.text = "";
     passwordNameTextController.text = "";
+    state.value = AuthState.none;
   }
 }
